@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw, Key, ShieldAlert } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Plus, Edit2, X, Loader2, AlertCircle, RefreshCw, ShieldAlert } from 'lucide-react';
 import { apiService } from '../services/api';
 import './Views.css';
 
@@ -18,7 +18,7 @@ interface User {
   createdAt?: string;
 }
 
-export const UsersView: React.FC = () => {
+export const UsersView = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -83,17 +83,6 @@ export const UsersView: React.FC = () => {
       handleCloseModal();
     } catch (error) {
       alert('Error guardando usuario');
-    }
-  };
-
-  const handleDelete = async (id: string) => {
-    if (window.confirm('¿Estás seguro de eliminar este usuario?')) {
-      try {
-        await apiService.delete('/bondoo/users', id);
-        fetchUsers();
-      } catch (error) {
-        alert('Error eliminando usuario');
-      }
     }
   };
 

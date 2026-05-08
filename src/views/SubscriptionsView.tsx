@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Trash2, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { apiService } from '../services/api';
 import './Views.css';
@@ -12,7 +12,7 @@ interface SubscriptionPay {
   amount: number;
 }
 
-export const SubscriptionsView: React.FC = () => {
+export const SubscriptionsView = () => {
   const [payments, setPayments] = useState<SubscriptionPay[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

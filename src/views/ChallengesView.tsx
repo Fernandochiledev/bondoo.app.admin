@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw, Download, Upload, Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import * as XLSX from 'xlsx/xlsx.mjs';
+import { useState, useEffect, useRef } from 'react';
+import { Plus, Edit2, X, Loader2, AlertCircle, RefreshCw, Download, Upload, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import { apiService } from '../services/api';
 import './Views.css';
 
@@ -42,7 +42,7 @@ interface Challenge {
   };
 }
 
-export const ChallengesView: React.FC = () => {
+export const ChallengesView = () => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [filteredChallenges, setFilteredChallenges] = useState<Challenge[]>([]);
   const [loading, setLoading] = useState(true);

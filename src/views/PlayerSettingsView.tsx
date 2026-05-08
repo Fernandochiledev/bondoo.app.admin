@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { apiService } from '../services/api';
 import './Views.css';
@@ -18,7 +18,7 @@ interface PlayerSetting {
   prDescription?: string;
 }
 
-export const PlayerSettingsView: React.FC = () => {
+export const PlayerSettingsView = () => {
   const [settings, setSettings] = useState<PlayerSetting[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

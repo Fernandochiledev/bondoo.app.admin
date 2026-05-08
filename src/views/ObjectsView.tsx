@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw, Download, Upload } from 'lucide-react';
-import * as XLSX from 'xlsx/xlsx.mjs';
+import * as XLSX from 'xlsx';
 import { apiService } from '../services/api';
 import './Views.css';
 
@@ -17,7 +17,7 @@ interface BondooObject {
   prDescription?: string;
 }
 
-export const ObjectsView: React.FC = () => {
+export const ObjectsView = () => {
   const [objects, setObjects] = useState<BondooObject[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

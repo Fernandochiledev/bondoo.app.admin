@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Trash2, Eye, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { apiService } from '../services/api';
 import './Views.css';
@@ -11,7 +11,7 @@ interface Session {
   player2?: { name: string, gender: string };
 }
 
-export const SessionsView: React.FC = () => {
+export const SessionsView = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

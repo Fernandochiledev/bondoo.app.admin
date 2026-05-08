@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw, Download, Upload } from 'lucide-react';
-import * as XLSX from 'xlsx/xlsx.mjs';
+import * as XLSX from 'xlsx';
 import { apiService } from '../services/api';
 import './Views.css';
 
@@ -19,7 +19,7 @@ interface CountryPlan {
   prDescription?: string;
 }
 
-export const PlansView: React.FC = () => {
+export const PlansView = () => {
   const [plans, setPlans] = useState<CountryPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

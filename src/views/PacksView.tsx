@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { apiService } from '../services/api';
 import './Views.css';
@@ -17,7 +17,7 @@ interface Pack {
   prDescription?: string;
 }
 
-export const PacksView: React.FC = () => {
+export const PacksView = () => {
   const [packs, setPacks] = useState<Pack[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

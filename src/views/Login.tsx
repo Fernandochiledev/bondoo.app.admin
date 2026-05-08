@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/auth';
 import './Login.css';
 
-export const Login: React.FC = () => {
+export const Login = () => {
   const [email, setEmail] = useState('fernandogonzaleztech@gmail.com');
   const [password, setPassword] = useState('fernandoAdmin_456$%');
   const [error, setError] = useState('');

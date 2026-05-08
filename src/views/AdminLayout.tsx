@@ -1,23 +1,13 @@
-import React from 'react';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { Users, Map, BarChart2, Box, Flag, CreditCard, Activity, LogOut, Package, Settings2 } from 'lucide-react';
 import { authService } from '../services/auth';
 import './AdminLayout.css';
 
-export const AdminLayout: React.FC = () => {
-  const navigate = useNavigate();
-
+export const AdminLayout = () => {
   const handleLogout = () => {
     authService.logout();
     window.location.href = 'https://bondoo.app';
   };
-
-  const languages = [
-    { code: 'ES', flag: '🇪🇸' },
-    { code: 'EN', flag: '🇺🇸' },
-    { code: 'PT', flag: '🇧🇷' },
-    { code: 'FR', flag: '🇫🇷' },
-  ];
 
   const navItems = [
     { path: '/users', icon: <Users size={20} />, label: 'Usuarios' },
