@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Plus, Edit2, X, Loader2, AlertCircle, RefreshCw, Download, Upload, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Loader2, AlertCircle, RefreshCw, Download, Upload, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import { apiService } from '../services/api';
 import './Views.css';
