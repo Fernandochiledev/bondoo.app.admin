@@ -26,6 +26,8 @@ export const PlansView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPlan, setEditingPlan] = useState<CountryPlan | null>(null);
   const [formData, setFormData] = useState<Partial<CountryPlan>>({});
+  const [editingCell, setEditingCell] = useState<{ id: string, field: keyof CountryPlan } | null>(null);
+  const [editValue, setEditValue] = useState<string | number>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -144,6 +146,33 @@ export const PlansView = () => {
     }
   };
 
+  const handleCellEdit = (plan: CountryPlan, field: keyof CountryPlan) => {
+    setEditingCell({ id: plan.countryId, field });
+    setEditValue(plan[field] as string | number);
+  };
+
+  const handleCellUpdate = async () => {
+    if (!editingCell) return;
+
+    const { id, field } = editingCell;
+    const originalPlan = plans.find(p => p.countryId === id);
+    if (!originalPlan) return;
+
+    if (originalPlan[field] === editValue) {
+      setEditingCell(null);
+      return;
+    }
+
+    try {
+      await apiService.patch('/bondoo/countries', id, { [field]: editValue });
+      setPlans(plans.map(p => p.countryId === id ? { ...p, [field]: editValue } : p));
+    } catch (error) {
+      alert('Error actualizando campo');
+    } finally {
+      setEditingCell(null);
+    }
+  };
+
   if (loading) return <div className="loading-state"><Loader2 className="animate-spin" /> Cargando planes...</div>;
 
   if (error) {
@@ -203,21 +232,53 @@ export const PlansView = () => {
             </tr>
           </thead>
           <tbody>
-            {plans.map((plan) => (
-              <tr key={plan.countryId}>
-                <td>{plan.countryName}</td>
-                <td>{plan.countryFlag || '-'}</td>
-                <td>{plan.countryProvider || '-'}</td>
-                <td>{plan.currency}</td>
-                <td>{plan.basicPlanCost}</td>
-                <td>{plan.premiumPlanCost}</td>
-                <td>{plan.allInclusivePlanCost}</td>
-                <td>
-                  <button className="btn-icon btn-edit" onClick={() => handleOpenModal(plan)}><Edit2 size={16} /></button>
-                  <button className="btn-icon btn-delete" onClick={() => handleDelete(plan.countryId)}><Trash2 size={16} /></button>
-                </td>
-              </tr>
-            ))}
+            {plans.map((plan) => {
+              const renderCell = (field: keyof CountryPlan, type: 'text' | 'number' = 'text') => {
+                const isEditing = editingCell?.id === plan.countryId && editingCell?.field === field;
+                
+                if (isEditing) {
+                  return (
+                    <input
+                      autoFocus
+                      type={type}
+                      className="inline-edit-input"
+                      value={editValue}
+                      onChange={(e) => setEditValue(type === 'number' ? Number(e.target.value) : e.target.value)}
+                      onBlur={handleCellUpdate}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleCellUpdate();
+                        if (e.key === 'Escape') setEditingCell(null);
+                      }}
+                    />
+                  );
+                }
+
+                return (
+                  <div 
+                    className="editable-cell" 
+                    onClick={() => handleCellEdit(plan, field)}
+                  >
+                    {plan[field] || '-'}
+                  </div>
+                );
+              };
+
+              return (
+                <tr key={plan.countryId}>
+                  <td>{renderCell('countryName')}</td>
+                  <td>{renderCell('countryFlag')}</td>
+                  <td>{renderCell('countryProvider')}</td>
+                  <td>{renderCell('currency')}</td>
+                  <td>{renderCell('basicPlanCost', 'number')}</td>
+                  <td>{renderCell('premiumPlanCost', 'number')}</td>
+                  <td>{renderCell('allInclusivePlanCost', 'number')}</td>
+                  <td>
+                    <button className="btn-icon btn-edit" onClick={() => handleOpenModal(plan)}><Edit2 size={16} /></button>
+                    <button className="btn-icon btn-delete" onClick={() => handleDelete(plan.countryId)}><Trash2 size={16} /></button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

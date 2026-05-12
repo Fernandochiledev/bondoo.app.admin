@@ -431,3 +431,31 @@ tr:hover td {
 select.filter-input {
   cursor: pointer;
 }
+
+/* Inline Edit Styles */
+.editable-cell {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.editable-cell:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  outline: 1px dashed var(--accent-color);
+}
+
+.inline-edit-input {
+  width: 100%;
+  padding: 4px 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: white;
+  font-size: 0.875rem;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
