@@ -1,15 +1,11 @@
-user admin:
+# Cuentas de prueba
 
-fernandogonzaleztech@gmail.com
-password: _elComputador2671$-
-plan: thisIsThePlanAdmin_456$%
---------------------------------
+Las credenciales fueron removidas de este archivo por seguridad (estaban versionadas en Git).
 
-usuariobasico@gmail.com
-UsuarioBasico
+- Las contraseñas expuestas deben considerarse comprometidas y rotarse.
+- No volver a guardar contraseñas en archivos del repositorio: usar un gestor de contraseñas.
 
-usuariopremium@gmail.com
-UsuarioPremium
-
-usuarioall@gmail.com
-UsuarioAll
+Usuarios de prueba (solo emails, sin contraseñas):
+- usuariobasico@gmail.com
+- usuariopremium@gmail.com
+- usuarioall@gmail.com

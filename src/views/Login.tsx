@@ -4,8 +4,8 @@ import { authService } from '../services/auth';
 import './Login.css';
 
 export const Login = () => {
-  const [email, setEmail] = useState('fernandogonzaleztech@gmail.com');
-  const [password, setPassword] = useState('fernandoAdmin_456$%');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://4j9s67zbu6.execute-api.us-east-1.amazonaws.com/prod';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://4j9s67zbu6.execute-api.us-east-1.amazonaws.com/prod';
 
 const getHeaders = () => {
   const token = localStorage.getItem('adminToken');
